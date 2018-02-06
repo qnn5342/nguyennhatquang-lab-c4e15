@@ -35,21 +35,22 @@ li_list = ul.find_all('li')
 # li_list = list
 songs_list = []
 for li in li_list:
-    a = li.h4.a # find('a')
-    href = a['href'] #similar to dictionary
-    title = a.string
+    h3a = li.h3.a
+    h4a = li.h4.a
+
+    song_name = h3a.string
+    artists = h4a.string
     songs= {
-        'Title': title,
-        'Link': href
+        'Name': song_name,
+        'artists': artists
         }
     # print(news_list)
     songs_list.append(songs)
 
 #3. Extract news
-#install pyexcel
-# import pyexcel
+## import pyexcel
 
-# pyexcel.save_as(records= news_list, dest_file_name= output_file)
+# pyexcel.save_as(records= songs_list, dest_file_name= output_file)
 
 ##Now is the YouTube Part
 from youtube_dl import YoutubeDL
@@ -63,7 +64,7 @@ dl = YoutubeDL(options)
 download_list = []
 # print(news_list)
 for dictionary in songs_list: # putting all link in a list
-    download_list.append(dictionary['Link'])
+    download_list.append(dictionary['Name'])
 
 # print (download_list)
 
